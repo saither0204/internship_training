@@ -21,6 +21,9 @@ n = 0
 art_url = []
 art_title = []
 for anchor in article_url:
+    headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36 QIHU 360SE'
+    }
     if re.search(r"https://www.bbc.com", str(anchor)):
         art_url.append(anchor['href'])
         art_title.append(anchor.string)

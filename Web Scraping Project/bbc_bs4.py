@@ -7,9 +7,9 @@ import re
 exec(open('bbc_url.py').read())
 
 t_date = time.strftime("%Y%m%d")
-filename = str(t_date)+"_url"
-filename_title = filename+"_title"
-work_book = str(t_date)+"_bbc_article_bs4"
+filename = str(t_date)+'_url'
+filename_title = filename+'_title'
+work_book = str(t_date)+'_bbc_article_bs4'
 
 file = open(filename+'.txt','r')
 file_t = open(filename_title+'.txt','r')
@@ -47,14 +47,19 @@ for row in range(len(url_list)):
     file_final.write(str(num)+".\n")
     file_final.write(title_list[row]+"\n")
     file_final.write(url_list[row]+"\n")
-    f = requests.get(url_list[row],headers=headers)
-    soup = BeautifulSoup(f.content, 'lxml')
-    for tag in soup.find_all(re.compile("^art")):
-        #print(tag)
-        art_tag_list.append(tag)
-    for i in range(len(art_tag_list)):
-        file_final.write(str(art_tag_list[i])+"\n")
+    try:
+        f = requests.get(url_list[row],headers=headers)
+        soup = BeautifulSoup(f.content, 'lxml')
+        for tag in soup.find_all(re.compile("^art")):
+            #print(tag)
+            art_tag_list.append(tag)
+        for i in range(len(art_tag_list)):
+            file_final.write(str(art_tag_list[i])+"\n")
+    except:
+        file_final.write("Status False\n")
+        
     file_final.write("\n\t                                       ******************************************************************************************\n\t                                       ******************************************************************************************\n\n")
+    print(num)
 
 # print(len(art_tag_list))
 
