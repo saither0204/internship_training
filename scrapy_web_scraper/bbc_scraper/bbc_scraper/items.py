@@ -6,7 +6,10 @@
 import scrapy
 
 
-class BbcScraperItem(scrapy.Item):
+class BbcArticleItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    urls = scrapy.Field()
+    titles = scrapy.Field()
+
+    articles = scrapy.Field()
